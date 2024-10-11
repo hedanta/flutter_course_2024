@@ -1,6 +1,6 @@
 class OMWeather {
   final double temp;
-  final String type;
+  final int type;
 
   const OMWeather(this.temp, this.type);
 
