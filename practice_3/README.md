@@ -51,5 +51,4 @@ GEO_OM_API_URL=https://geocoding-api.open-meteo.com/
 
 ### Демонстрация работы приложения
 ![en](vids/weather_app_1.gif)
-
 ![ru](./vids/weather_app_2.gif)
