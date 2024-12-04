@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:practice_1/features/core/domain/entities/search_query.dart';
 import 'package:practice_1/features/core/domain/repositories/weather_repository.dart';
 import 'dart:io';

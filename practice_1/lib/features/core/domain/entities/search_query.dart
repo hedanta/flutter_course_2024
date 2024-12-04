@@ -2,8 +2,8 @@ abstract class SearchQuery {}
 
 class SearchQueryCity extends SearchQuery {
   final String city;
-
-  SearchQueryCity(this.city);
+  final String language;
+  SearchQueryCity(this.city, {this.language = 'en'});
 }
 
 class SearchQueryCoord extends SearchQuery {

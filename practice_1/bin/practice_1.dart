@@ -13,8 +13,9 @@ Future<void> main(List<String> arguments) async {
   final String osmUrl = env['OSM_API_URL']!;
   final String osmApiKey = env['OSM_API_KEY']!;
   final String omUrl = env['OM_API_URL']!;
+  final String geoUrl = env['GEO_OM_API_URL']!;
 
   //var app = App(WeatherRepositoryOSM(OSMApi(osmUrl, osmApiKey)));
-  var app = App(WeatherRepositoryOM(OMApi(omUrl)));
+  var app = App(WeatherRepositoryOM(OMApi(omUrl, geoUrl)));
   app.run();
 }

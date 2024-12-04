@@ -1,6 +1,6 @@
 class SearchResponse {
   final int temp;
-  final WeatherType type;
+  final String type;
 
   const SearchResponse(this.temp, this.type);
 
@@ -10,4 +10,25 @@ class SearchResponse {
   }
 }
 
-enum WeatherType {clear, rain, cloudy, other}
+class SearchResponseOM extends SearchResponse {
+  final int windSpeed;
+  final int isDay;
+  final int minTemp;
+  final int maxTemp;
+
+  SearchResponseOM(super.temp, super.type, this.windSpeed, this.isDay,
+                   this.minTemp, this.maxTemp);
+
+  @override
+  String toString() {
+    return 'SearchResponseOM{temp: $temp, type: $type, windSpeed: $windSpeed, '
+        'isDay: $isDay, minTemp: $minTemp, maxTemp: $maxTemp}';
+  }
+}
+
+enum WeatherType {clear, rain, cloudy, snow, fog, thunderstorm, other}
+extension WeatherTypeExtension on WeatherType {
+  String toTypeString() {
+    return toString().split('.').last;
+  }
+}
