@@ -9,7 +9,6 @@ class Note {
     required this.content,
   });
 
-  // Метод для копирования заметки с изменёнными полями
   Note copyWith({String? title, String? content}) {
     return Note(
       id: id,

@@ -7,7 +7,7 @@ import '../../models/note.dart';
 class NoteScreen extends StatefulWidget {
   final Note? note;
 
-  const NoteScreen({Key? key, this.note}) : super(key: key);
+  const NoteScreen({super.key, this.note});
 
   @override
   State<NoteScreen> createState() => _NoteScreenState();
@@ -32,10 +32,8 @@ class _NoteScreenState extends State<NoteScreen> {
       final noteCubit = context.read<NoteCubit>();
 
       if (widget.note == null) {
-        // Add a new note
         noteCubit.addNote(title, content);
       } else {
-        // Update the existing note
         noteCubit.updateNote(widget.note!.id, title, content);
       }
     }
@@ -71,13 +69,6 @@ class _NoteScreenState extends State<NoteScreen> {
 
 
   @override
-  void dispose() {
-    titleController.dispose();
-    contentController.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return PopScope<Object?>(
       canPop: true,
@@ -86,7 +77,9 @@ class _NoteScreenState extends State<NoteScreen> {
         return;
       },
       child: Scaffold(
+        backgroundColor: const Color(0xffd9d498),
         appBar: AppBar(
+          backgroundColor: Colors.white,
           title: Text(widget.note == null ? 'New Note' : 'Edit Note'),
           actions: [
             if (widget.note != null)
@@ -104,25 +97,45 @@ class _NoteScreenState extends State<NoteScreen> {
             children: [
               TextField(
                 controller: titleController,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Title',
                   hintText: 'Enter the title',
                   hintStyle: TextStyle(
                     fontWeight: FontWeight.w300,
-                    color: Colors.grey.withOpacity(0.7),
+                    color: Colors.grey
                   ),
+                    enabledBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Colors.black12,
+                      ),
+                    ),
+                    focusedBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Color(0xff473f31),
+                      ),
+                    )
                 ),
               ),
               const SizedBox(height: 16.0),
               TextField(
                 controller: contentController,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Content',
                   hintText: 'Enter the content',
                   hintStyle: TextStyle(
                     fontWeight: FontWeight.w300,
-                    color: Colors.grey.withOpacity(0.5),
+                    color: Colors.grey
                   ),
+                  enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Colors.black12,
+                    ),
+                  ),
+                  focusedBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Color(0xff473f31),
+                    ),
+                  )
                 ),
                 maxLines: null,
               ),

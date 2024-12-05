@@ -13,7 +13,10 @@ class HomeScreen extends StatelessWidget {
     final noteCubit = Provider.of<NoteCubit>(context);
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Notes')),
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+          title: const Text('Notes'),
+          backgroundColor: const Color(0xffd9d498)),
       body: BlocBuilder<NoteCubit, NoteState>(
         bloc: noteCubit,
         builder: (context, state) {
@@ -41,6 +44,7 @@ class HomeScreen extends StatelessWidget {
         },
       ),
       floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.white,
         onPressed: () {
           Navigator.push(
             context,

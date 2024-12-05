@@ -21,6 +21,7 @@ class MyApp extends StatelessWidget {
         ),
       ],
       child: const MaterialApp(
+        debugShowCheckedModeBanner: false,
         title: 'Notes App',
         home: HomeScreen(),
       ),
