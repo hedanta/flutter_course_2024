@@ -1,8 +1,5 @@
-import 'package:practice_1/features/core/data/debug/weather_repository_debug.dart';
 import 'package:practice_1/features/core/data/om/om_api.dart';
 import 'package:practice_1/features/core/data/om/weather_repository_om.dart';
-import 'package:practice_1/features/core/data/osm/osm_api.dart';
-import 'package:practice_1/features/core/data/osm/weather_repository_osm.dart';
 import 'package:practice_1/features/core/presentation/app.dart';
 import 'package:dotenv/dotenv.dart';
 
