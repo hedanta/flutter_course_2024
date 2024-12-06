@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../models/note.dart';
+import '../cubit/note_state.dart';
 
 class NoteCard extends StatelessWidget {
   final Note note;
@@ -14,11 +14,10 @@ class NoteCard extends StatelessWidget {
         title: Text(note.title),
         subtitle: Text(note.content, maxLines: 2, overflow: TextOverflow.ellipsis),
         onTap: () {
-          // Навигация к экрану редактирования/просмотра заметки
           Navigator.pushNamed(
             context,
             '/note',
-            arguments: note,  // Передаем заметку в качестве аргумента
+            arguments: note,
           );
         },
       ),

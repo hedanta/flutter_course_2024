@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
-import '../../cubit/note_cubit.dart';
-import '../../models/note.dart';
+import '../cubit/note_cubit.dart';
+import '../cubit/note_state.dart';
 
 class NoteScreen extends StatefulWidget {
   final Note? note;

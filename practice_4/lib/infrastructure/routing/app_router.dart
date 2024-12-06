@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import './screens/home_screen.dart';
-import './screens/note_screen.dart';
-import '../models/note.dart';
+import '../../presentation/screens/home_screen.dart';
+import '../../presentation/screens/note_screen.dart';
+import '../../presentation/cubit/note_state.dart';
 
 class AppRouter {
   static Route onGenerateRoute(RouteSettings settings) {

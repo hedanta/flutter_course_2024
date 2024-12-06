@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:provider/provider.dart';
 
-import '../../cubit/note_cubit.dart';
+import '../cubit/note_cubit.dart';
 import 'note_screen.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -10,15 +9,13 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final noteCubit = Provider.of<NoteCubit>(context);
-
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-          title: const Text('Notes'),
-          backgroundColor: const Color(0xffd9d498)),
+        title: const Text('Notes'),
+        backgroundColor: const Color(0xffd9d498),
+      ),
       body: BlocBuilder<NoteCubit, NoteState>(
-        bloc: noteCubit,
         builder: (context, state) {
           if (state.notes.isEmpty) {
             return const Center(child: Text('No notes yet'));
