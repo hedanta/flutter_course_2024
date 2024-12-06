@@ -1,16 +1,21 @@
-# practice_4
+# Практическое задание №4
 
-A new Flutter project.
+### БПМ-22-ПО-1, Лебкова Марина
 
-## Getting Started
+### Описание задания
+Приложение позволяет пользователю создавать, 
+просматривать, редактировать и удалять заметки.
+Архитектура приложения основана на **BLoC** (для простоты **Cubit**) 
+для управления состоянием.
 
-This project is a starting point for a Flutter application.
+### Основные виджеты
+- `MaterialApp` - Контейнер для приложения, интерфейс с использованием Material Design.
 
-A few resources to get you started if this is your first Flutter project:
+- `Scaffold` - Базовая структура экрана, включает `AppBar` и `body`.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- `TextField` - Поле для ввода текста и названия заметки.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- `AlertDialog` и `showDialog` - Диалоговое окно для подтверждения удаления.
+
+### Демонстрация работы приложения
+![notes_app](vids/notes_app.gif)
