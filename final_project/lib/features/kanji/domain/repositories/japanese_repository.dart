@@ -1,6 +1,5 @@
-import '../entities/seacrh_query.dart';
-import '../entities/seacrh_response.dart';
+import 'package:final_project/features/kanji/domain/entities/kanji.dart';
 
-abstract class JapaneseRepository<T extends SearchResponse> {
-  Future<T> getKanjiInfo(SearchQuery query);
+abstract class JapaneseRepository {
+  Future<Kanji> fetchKanjiInfo(String kanji);
 }

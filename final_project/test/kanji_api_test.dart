@@ -3,7 +3,7 @@ import 'package:mockito/mockito.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-import 'package:final_project/features/kanji/data/kanji_api.dart';
+import 'package:final_project/features/kanji/data/data_sources/kanji_api.dart';
 import 'kanji_api_test.mocks.dart';
 
 void main() {
@@ -35,7 +35,7 @@ void main() {
         headers: {'content-type': 'application/json; charset=utf-8'},
       ));
 
-      final result = await api.getKanjiInfo(kanjiChar);
+      final result = await api.fetchKanjiInfo(kanjiChar);
 
       expect(result.kanji, '日');
       expect(result.meanings, ['sun', 'day']);
@@ -53,7 +53,7 @@ void main() {
       ));
 
       expect(
-            () async => await api.getKanjiInfo(kanjiChar),
+            () async => await api.fetchKanjiInfo(kanjiChar),
         throwsA(isA<KanjiNotFoundException>()),
       );
     });
@@ -69,7 +69,7 @@ void main() {
       ));
 
       expect(
-            () async => await api.getKanjiInfo(kanjiChar),
+            () async => await api.fetchKanjiInfo(kanjiChar),
         throwsA(isA<FormatException>()),
       );
     });
