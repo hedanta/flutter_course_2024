@@ -52,6 +52,7 @@ class KanjiProvider extends ChangeNotifier {
     isLoading = true;
     _isError = false;
     isKanjiFound = false;
+    errorMessage = null;
     notifyListeners();
 
     if (kanji.trim().isEmpty) {

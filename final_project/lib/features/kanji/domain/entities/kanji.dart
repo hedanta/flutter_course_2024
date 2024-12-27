@@ -14,26 +14,4 @@ class Kanji {
     required this.onReadings,
     required this.jlpt,
   });
-
-  Map<String, dynamic> toJson() {
-    return {
-      'kanji': kanji,
-      'heisig': heisig,
-      'meanings': meanings,
-      'kunReadings': kunReadings,
-      'onReadings': onReadings,
-      'jlpt': jlpt,
-    };
-  }
-
-  static Kanji fromJson(Map<String, dynamic> json) {
-    return Kanji(
-      kanji: json['kanji'],
-      heisig: json['heisig'],
-      meanings: List<String>.from(json['meanings']),
-      kunReadings: List<String>.from(json['kunReadings']),
-      onReadings: List<String>.from(json['onReadings']),
-      jlpt: json['jlpt'],
-    );
-  }
 }

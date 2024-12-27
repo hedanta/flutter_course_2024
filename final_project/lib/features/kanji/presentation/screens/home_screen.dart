@@ -16,86 +16,96 @@ class HomeScreen extends StatelessWidget {
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.white,
-        title: Consumer<KanjiProvider>(
-          builder: (context, kanjiProvider, child) {
-            return TextField(
-              controller: controller,
-              decoration: InputDecoration(
-                hintText: 'Enter Kanji',
-                suffixIcon: IconButton(
-                  icon: Icon(Icons.search),
-                  onPressed: () {
-                    kanjiProvider.fetchKanjiInfo(controller.text);
-                  },
-                ),
-                enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(
-                    color: kanjiProvider.isError ? Colors.red : Colors.grey,
-                  ),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(
-                    color: kanjiProvider.isError ? Colors.red : Colors.blueGrey,
-                  ),
-                ),
-              ),
-              onSubmitted: (value) {
-                kanjiProvider.fetchKanjiInfo(value);
-              },
-            );
-          },
-        ),
+        title: const Text('Kanji Dictionary'),
       ),
       resizeToAvoidBottomInset: true,
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Align(
-              alignment: Alignment.center,
+      body: Stack(
+        children: [
+          Align(
+            alignment: Alignment.topCenter,
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
               child: Consumer<KanjiProvider>(
                 builder: (context, kanjiProvider, child) {
-                  if (kanjiProvider.isLoading) {
-                    return Center(child: CircularProgressIndicator());
-                  } else if (kanjiProvider.isKanjiFound) {
-                    return Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Align(
-                          alignment: Alignment.centerLeft,
-                          child: KanjiWidget(kanji: kanjiProvider.kanjiInfo!),
-                        ),
-                        TextButton(
-                          style: TextButton.styleFrom(
-                            foregroundColor: const Color(0xffa37f83),
-                            textStyle: const TextStyle(fontSize: 18),
-                          ),
-                          child: Text(
-                            kanjiProvider.isKanjiStarred(kanjiProvider.kanjiInfo!) ? 'Saved' : 'Save',
-                          ),
-                          onPressed: () {
-                            kanjiProvider.toggleStarredKanji(kanjiProvider.kanjiInfo!);
-                          },
-                        ),
-                      ],
-                    );
-                  } else if (kanjiProvider.errorMessage != null) {
-                    return Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        kanjiProvider.errorMessage!,
-                        style: const TextStyle(color: Colors.red, fontSize: 16),
+                  return TextField(
+                    controller: controller,
+                    decoration: InputDecoration(
+                      hintText: 'Enter Kanji',
+                      suffixIcon: IconButton(
+                        icon: const Icon(Icons.search),
+                        onPressed: () => kanjiProvider.fetchKanjiInfo(controller.text),
                       ),
-                    );
-                  } else {
-                    return Text('', style: TextStyle(fontSize: 16));
-                  }
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: kanjiProvider.isError ? Colors.red : Colors.grey,
+                        ),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: kanjiProvider.isError ? Colors.red : Colors.blueGrey,
+                        ),
+                      ),
+                    ),
+                    onSubmitted: kanjiProvider.fetchKanjiInfo,
+                  );
                 },
               ),
             ),
-          ],
-        ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 80.0),
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Align(
+                      alignment: Alignment.center,
+                      child: Consumer<KanjiProvider>(
+                        builder: (context, kanjiProvider, child) {
+                          if (kanjiProvider.isLoading) {
+                            return const Center(child: CircularProgressIndicator());
+                          } else if (kanjiProvider.isKanjiFound) {
+                            return Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Align(
+                                  alignment: Alignment.centerLeft,
+                                  child: KanjiWidget(kanji: kanjiProvider.kanjiInfo!),
+                                ),
+                                TextButton(
+                                  style: TextButton.styleFrom(
+                                    foregroundColor: const Color(0xffa37f83),
+                                    textStyle: const TextStyle(fontSize: 18),
+                                  ),
+                                  child: Text(
+                                    kanjiProvider.isKanjiStarred(kanjiProvider.kanjiInfo!) ? 'Saved' : 'Save',
+                                  ),
+                                  onPressed: () => kanjiProvider.toggleStarredKanji(kanjiProvider.kanjiInfo!),
+                                ),
+                              ],
+                            );
+                          } else if (kanjiProvider.errorMessage != null) {
+                            return Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text(
+                                kanjiProvider.errorMessage!,
+                                style: const TextStyle(color: Colors.red, fontSize: 16),
+                              ),
+                            );
+                          } else {
+                            return const Text('', style: TextStyle(fontSize: 16));
+                          }
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: const Color(0xffe3cfd1),

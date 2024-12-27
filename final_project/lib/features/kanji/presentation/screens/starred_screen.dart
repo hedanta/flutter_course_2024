@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'package:final_project/features/kanji/presentation/provider/kanji_provider.dart';
 import 'package:final_project/features/kanji/domain/entities/kanji.dart';
+import 'package:final_project/features/kanji/presentation/provider/kanji_provider.dart';
 import 'package:final_project/features/kanji/presentation/widgets/kanji_widget.dart';
 
 class StarredScreen extends StatelessWidget {

@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'package:final_project/features/kanji/data/data_sources/kanji_api.dart';
+import 'package:final_project/features/kanji/data/data_sources/kanji_local.dart';
 import 'package:final_project/features/kanji/data/kanji_repository.dart';
 import 'package:final_project/features/kanji/presentation/provider/kanji_provider.dart';
 import 'package:final_project/features/kanji/presentation/screens/home_screen.dart';
-import 'package:final_project/features/kanji/data/data_sources/kanji_local.dart';
 
 void main() async {
   await dotenv.load();
