@@ -29,9 +29,6 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Kanji Dictionary',
-      theme: ThemeData(
-        primarySwatch: Colors.blueGrey,
-      ),
       home: HomeScreen(),
     );
   }

@@ -8,7 +8,9 @@ class KanjiProvider extends ChangeNotifier {
   final KanjiLocalDataSource _kanjiLocalDataSource;
   final KanjiRepository _kanjiRepository;
 
-  KanjiProvider(this._kanjiLocalDataSource, this._kanjiRepository);
+  KanjiProvider(this._kanjiLocalDataSource, this._kanjiRepository) {
+    loadStarredKanjis();
+  }
 
   List<Kanji> _starredKanjis = [];
   Kanji? kanjiInfo;
@@ -29,17 +31,20 @@ class KanjiProvider extends ChangeNotifier {
     return _starredKanjis.any((starred) => starred.kanji == kanji.kanji);
   }
 
-  Future<void> removeStarredKanji(Kanji kanji) async {
-    await _kanjiLocalDataSource.deleteStarredKanji(kanji);
-    await loadStarredKanjis();
-  }
-
-  void toggleStarredKanji(Kanji kanji) {
+  Future<void> toggleStarredKanji(Kanji kanji) async {
     if (isKanjiStarred(kanji)) {
       _starredKanjis.removeWhere((starred) => starred.kanji == kanji.kanji);
+      await _kanjiLocalDataSource.deleteStarredKanji(kanji);
     } else {
       _starredKanjis.add(kanji);
+      await _kanjiLocalDataSource.saveStarredKanji(kanji);
     }
+    notifyListeners();
+  }
+
+  Future<void> removeStarredKanji(Kanji kanji) async {
+    _starredKanjis.removeWhere((starred) => starred.kanji == kanji.kanji);
+    await _kanjiLocalDataSource.deleteStarredKanji(kanji);
     notifyListeners();
   }
 
